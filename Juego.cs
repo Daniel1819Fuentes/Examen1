@@ -1,38 +1,54 @@
 namespace Examen1;
 
 class Juego: Program{
-    public int dinero {set; get;}
-    public Juego(int dinero){
-        this.dinero = dinero;
-    }
+    Ruleta ruleta = new Ruleta();
+    public int dinero = 300;
+    public int dineroapostado = 0;
     public void MostrarSaldo() {
-        Console.WriteLine(dinero.ToString());
+        Console.WriteLine(dinero);
     }
-    public void ValidarSaldo() {
-        if (this.dinero<=0)
+    public void RealizarApuesta() {
+        bool a = true;
+        if (dinero > 0)
         {
-            
-        }else
+            do
+            {
+                int n = ruleta.Dinero();
+                if (n > 0 && n%10==0 && n <= dinero)
+                {
+                    Console.WriteLine("se realizo la apuesta");
+                    dineroapostado = n;
+                    a = false;
+                }
+
+
+            } while (a);
+        } else
         {
-            
+            Console.WriteLine("No cuenta con el dinero suficiente");
         }
     }
-    public void ValidarApuesta() {
-        int valor;
-        string? n;
-        bool esNumero;
-        bool rangoAceptado = true;
-        do
+    public void Premio(bool b, int n) {
+        bool a = b;
+        switch (n)
         {
-            do {
-                Console.Clear();
-                Console.WriteLine("Ingrese una apuesta en multiplos de 10");
-                n = Console.ReadLine(); 
-                esNumero= int.TryParse(n, out valor);
-            } while (!esNumero);
-            if(valor > 0 && valor < 36) {
-                rangoAceptado = false;
+            case 1:
+            if (a.Equals(true))
+            {
+                dinero = dinero + dineroapostado*10;
+                Console.WriteLine("has ganado: +" + (dineroapostado * 10));
+                Console.WriteLine(dinero);
+                Console.ReadLine();
+            } else
+            {
+                dinero = dinero - dineroapostado*10;
+                Console.WriteLine("has perdido: -" + (dineroapostado * 10));
+                Console.WriteLine( dinero);
+                Console.ReadLine();
             }
-        } while (rangoAceptado);
+            break;
+            default:
+            break;
+        }
     }
 }

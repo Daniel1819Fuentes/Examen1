@@ -1,7 +1,7 @@
 namespace Examen1;
 
 class Jugador {
-    Juego juego = new Juego(300);
+    Juego juego = new Juego();
     SubMenus subMenus = new SubMenus();
     public bool MostrarMenu() {
         Console.Clear();
@@ -15,7 +15,7 @@ class Jugador {
         switch(Console.ReadLine()) {
             case "1":
             juego.MostrarSaldo();
-            Console.Write("precione cualquier enter para continuar");
+            Console.Write("precione enter para continuar");
             Console.ReadLine();
             return true;
             case "2":

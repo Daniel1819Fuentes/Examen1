@@ -2,6 +2,7 @@ namespace Examen1;
 
 class SubMenus {
     Ruleta ruleta = new Ruleta();
+    Juego juego = new Juego();
     public void MenuApuestas() {
         bool selec = true;
         while (selec) {
@@ -14,8 +15,9 @@ class SubMenus {
             Console.Write("Opcion: ");
             switch (Console.ReadLine()) {
                 case "1":
+                    juego.RealizarApuesta();
                     int n = ruleta.Verificarnum();
-                    ruleta.ApuestaPorNum(n);
+                    juego.Premio(ruleta.ApuestaPorNum(n), 1);
                     break;
                 case "2":
                     MenuColores();
@@ -145,8 +147,6 @@ class SubMenus {
                     selec = true;
                     break;
                 case "6":
-                    Console.WriteLine("Hasta pronto");
-                    Console.ReadLine();
                     selec = false;
                     break;
                 default: 

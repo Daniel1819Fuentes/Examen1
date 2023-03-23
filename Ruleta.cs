@@ -1,14 +1,14 @@
 namespace Examen1;
  class Ruleta {
-    public void ApuestaPorNum(int n) {
+    public bool ApuestaPorNum(int n) {
         Console.Clear();
         int a = Aleatorio36();
         Console.WriteLine($"En la ruleta a caido: {a}");
         if (a == n) {
-            Console.WriteLine("has ganado");
+            return true;
         } else
         {
-            Console.WriteLine("has perdido");
+            return false;
         }   
     }
     public int Verificarnum() {
@@ -66,5 +66,25 @@ namespace Examen1;
         {
             return 1;
         }
+    }
+    public int Dinero() {
+        int valor;
+        string? n;
+        bool esNumero;
+        bool rangoAceptado = true;
+        
+        do
+        {
+            do {
+                Console.Clear();
+                Console.WriteLine("Ingrese una apuesta en multiplos de 10");
+                n = Console.ReadLine(); 
+                esNumero= int.TryParse(n, out valor);
+            } while (!esNumero);
+            if(valor > 0 && valor < 36) {
+                rangoAceptado = false;
+            }
+        } while (rangoAceptado);
+        return valor;
     }
  }
